@@ -1,0 +1,162 @@
+<!-- local css for body -->
+<link rel="stylesheet" type="text/css" href="../css/home.css" />
+<!-- local css for header -->
+<link rel="stylesheet" type="text/css" href="../css/header.css" />
+
+<div class="bubbles">
+  <span style="--i: 11"></span>
+  <span style="--i: 12"></span>
+  <span style="--i: 24"></span>
+  <span style="--i: 10"></span>
+  <span style="--i: 14"></span>
+  <span style="--i: 23"></span>
+  <span style="--i: 18"></span>
+  <span style="--i: 16"></span>
+  <span style="--i: 19"></span>
+  <span style="--i: 20"></span>
+  <span style="--i: 22"></span>
+  <span style="--i: 25"></span>
+  <span style="--i: 18"></span>
+  <span style="--i: 21"></span>
+  <span style="--i: 15"></span>
+  <span style="--i: 33"></span>
+  <span style="--i: 26"></span>
+  <span style="--i: 17"></span>
+  <span style="--i: 13"></span>
+  <span style="--i: 28"></span>
+  <!-- Next half  -->
+  <span style="--i: 11"></span>
+  <span style="--i: 12"></span>
+  <span style="--i: 24"></span>
+  <span style="--i: 10"></span>
+  <span style="--i: 14"></span>
+  <span style="--i: 23"></span>
+  <span style="--i: 18"></span>
+  <span style="--i: 16"></span>
+  <span style="--i: 19"></span>
+  <span style="--i: 20"></span>
+  <span style="--i: 22"></span>
+  <span style="--i: 25"></span>
+  <span style="--i: 18"></span>
+  <span style="--i: 21"></span>
+  <span style="--i: 15"></span>
+  <span style="--i: 33"></span>
+  <span style="--i: 26"></span>
+  <span style="--i: 17"></span>
+  <span style="--i: 13"></span>
+  <span style="--i: 28"></span>
+</div>
+<!-- header -->
+<div class="nav-bar">
+  <a href="" class="back-icon" style="visibility: hidden">
+    <i class="fa-solid fa-circle-arrow-left" style="color: #b8b8b8"></i>
+  </a>
+  <div class="title">CSV Upload</div>
+  <div class="skill">Skill Test Project</div>
+</div>
+
+<!-- upload -->
+<div class="box">
+  <div class="container">
+    <!-- main text -->
+    <div class="center-text">
+      <h1>Upload a File Here</h1>
+      <p style="color: black">
+        Reads CSV file and displays its content in tabular form
+      </p>
+    </div>
+
+    <!-- upload box -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <div class="input-container" id="formm">
+        <input type="file" id="csvFile" name="file" accept=".csv" />
+        <button class="upload-btn">Upload</button>
+      </div>
+    </form>
+  </div>
+  <div class="bubbles">
+    <span style="--i: 11"></span>
+    <span style="--i: 12"></span>
+    <span style="--i: 24"></span>
+    <span style="--i: 10"></span>
+    <span style="--i: 14"></span>
+    <span style="--i: 23"></span>
+    <span style="--i: 18"></span>
+    <span style="--i: 16"></span>
+    <span style="--i: 19"></span>
+    <span style="--i: 20"></span>
+    <span style="--i: 22"></span>
+    <span style="--i: 25"></span>
+    <span style="--i: 18"></span>
+    <span style="--i: 21"></span>
+    <span style="--i: 15"></span>
+    <span style="--i: 33"></span>
+    <span style="--i: 26"></span>
+    <span style="--i: 17"></span>
+    <span style="--i: 13"></span>
+    <span style="--i: 28"></span>
+    <!-- Next half  -->
+    <span style="--i: 11"></span>
+    <span style="--i: 12"></span>
+    <span style="--i: 24"></span>
+    <span style="--i: 10"></span>
+    <span style="--i: 14"></span>
+    <span style="--i: 23"></span>
+    <span style="--i: 18"></span>
+    <span style="--i: 16"></span>
+    <span style="--i: 19"></span>
+    <span style="--i: 20"></span>
+    <span style="--i: 22"></span>
+    <span style="--i: 25"></span>
+    <span style="--i: 18"></span>
+    <span style="--i: 21"></span>
+    <span style="--i: 15"></span>
+    <span style="--i: 33"></span>
+    <span style="--i: 26"></span>
+    <span style="--i: 17"></span>
+    <span style="--i: 13"></span>
+    <span style="--i: 28"></span>
+  </div>
+</div>
+
+<!-- show uploaded files -->
+<div class="files-list" style="margin-bottom: 50px">
+  <div class="list-center-text">
+    <h2>Uploaded files</h2>
+  </div>
+
+  <% if(files.length==0) { %>
+  <div class="no-file">No files to show!</div>
+  <% } else { %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Time (UTC)</th>
+        <th>View</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(let file of files) { %>
+      <tr>
+        <td><%= file.fileName %></td>
+        <td><%= file.createdAt.toLocaleDateString() %></td>
+        <td><%= file.createdAt.toLocaleTimeString() %></td>
+        <td>
+          <a href="/view/<%= file.file %>" class="view-link"
+            ><i class="fa-solid fa-arrow-up-right-from-square"></i
+          ></a>
+        </td>
+        <td>
+          <a href="/delete/<%= file.file %>" class="delete-link"
+            ><i class="fa-regular fa-trash-can" style="color: #f00"></i
+          ></a>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <% } %>
+</div>
